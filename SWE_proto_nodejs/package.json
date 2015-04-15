@@ -1,0 +1,21 @@
+{
+    "name": "SWE_proto_nodejs",
+    "description": "",
+    "version": "0.0.1",
+    "main": "./SWE_proto_nodejs.js",
+    "author": {
+        "name": "Paul Pelludat",
+        "email": "pelludat.paul@googlemail.com"
+    },
+    "keywords": [],
+    "licenses": {
+        "type": "none"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/YOUR_LOGIN/SWE_proto_nodejs.git"
+    },
+    "bugs": {
+        "url": "http://github.com/YOUR_LOGIN/SWE_proto_nodejs/issues"
+    }
+}
