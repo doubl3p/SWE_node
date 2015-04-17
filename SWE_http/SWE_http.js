@@ -15,3 +15,6 @@ http.createServer(function(req, res){
    },2000);
 
 }).listen(8080);
+
+var socket = require('socket.io');
+var mongo = require('mongodb');
