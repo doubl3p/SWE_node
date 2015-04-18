@@ -18,3 +18,6 @@ http.createServer(function(req, res){
 
 var socket = require('socket.io');
 var mongo = require('mongodb');
+
+//irgendwas zum testen bla
+console.log("Duc war hier");
