@@ -1,8 +1,8 @@
 {
-    "name": "SWE_http",
+    "name": "REST_API_Project",
     "description": "",
     "version": "0.0.1",
-    "main": "./SWE_http.js",
+    "main": "./REST_API_Project.js",
     "author": {
         "name": "Paul Pelludat",
         "email": "pelludat.paul@googlemail.com"
@@ -13,9 +13,9 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/YOUR_LOGIN/SWE_http.git"
+        "url": "git://github.com/YOUR_LOGIN/REST_API_Project.git"
     },
     "bugs": {
-        "url": "http://github.com/YOUR_LOGIN/SWE_http/issues"
+        "url": "http://github.com/YOUR_LOGIN/REST_API_Project/issues"
     }
 }
