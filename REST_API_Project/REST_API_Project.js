@@ -14,11 +14,7 @@ db.on('error', console.error);
 // dieses DB bekannt machen
 db.once('open', function() {
 	  // Schema erstellen
-      var pokemonSchema = new mongoose.Schema({
-	  name: { type: String },
-      number: { type: Number },
-      element: { type: String }
-	});
+
 
     // Model aus Schema erstellen
 	var Pokemon = mongoose.model('Pokemon', pokemonSchema);

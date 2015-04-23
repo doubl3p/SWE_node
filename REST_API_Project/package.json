@@ -3,6 +3,11 @@
     "description": "",
     "version": "0.0.1",
     "main": "./REST_API_Project.js",
+    "dependencies": {
+        "express": "~4.0.0",
+        "mongoose": "~3.6.13",
+        "body-parser": "~1.0.1"
+    },
     "author": {
         "name": "Paul Pelludat",
         "email": "pelludat.paul@googlemail.com"
