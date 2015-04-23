@@ -1,47 +1,46 @@
 /*
-
+CRUD-Methoden
+- Zugriff DB
+- REST-API
  */
 
-// einbinden der node.js module
+// Einbinden der node.js module
 var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose'); //Modul einbinden
+var mongoose = require('mongoose');
 var pokemon = require('./pokemon');
 
 
 // Verbinden zur DB
 mongoose.connect('mongodb://localhost/REST_API_Project');
 
-// app das modul body parser bekannt machen, um body von POST nach JSON zu parsen
+// Express-Instanz das modul body parser bekannt machen, um body von POST nach JSON zu parsen
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// setzen des Ports für unsere Anwendung
-
+// Setzen des Ports für unsere Anwendung
 var port = process.env.PORT || 8080;
 
-// ROUTES FOR OUR API
-// =============================================================================
+// CRUD-Methoden mit Pfadangabe
+//--------------------------------------------------------
 
 // Router Instanz vom express modul erstellen
 var router = express.Router();
 
-// middleware to use for all requests
+// Middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
-    console.log('Something is happening.');
+    console.log('HTTP-Request geht ein!');
     next(); //dient  dazu den nächsten request zu bedienen und hier nicht zu stoppen
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });
-});
 
-// Pfad für POST-Request
+// Prefix für PATH
+app.use('/REST_API_Project', router);
+
+// POST einer neuen pokemonInstanz
 router.route('/pokemons')
-
     .post(function(req, res) {
 
         // pokemon Instanz erstellen
@@ -60,8 +59,8 @@ router.route('/pokemons')
 
     });
 
+// GET aller pekemons
 router.route('/pokemons')
-
     .get(function(req, res) {
         pokemon.find(function(err, pokemons) {
             if (err)
@@ -71,10 +70,8 @@ router.route('/pokemons')
         });
     });
 
-
+// GET für pokemon mit übergebener ID
 router.route('/pokemons/:pokemon_id')
-
-    //
     .get(function(req, res) {
         pokemon.findById(req.params.pokemon_id, function(err, pokemon) {
             if (err)
@@ -83,12 +80,12 @@ router.route('/pokemons/:pokemon_id')
         });
     });
 
+// UPDATE für pokemon mit übergebener ID
 router.route('/pokemons/:pokemon_id')
-
-   // update the bear with this id (accessed at PUT http://localhost:8080/api/bears/:bear_id)
     .put(function(req, res) {
 
-        // use our bear model to find the bear we want
+        // methode findById auf pokemon model aufrufen, um pokemon mit
+        // übergebener ID zu finden und anschließend zu updaten.
         pokemon.findById(req.params.pokemon_id, function(err, pokeInstanz) {
 
             if (err)
@@ -102,14 +99,12 @@ router.route('/pokemons/:pokemon_id')
             pokeInstanz.save(function(err) {
                 if (err)
                     res.send(err);
-
                 res.json({ message: 'Pokemon upgedated!' });
             });
-
         });
-
     });
 
+// DELETE für pokemon mit übergebener ID
 router.route('/pokemons/:pokemon_id')
 
     .delete(function(req, res) {
@@ -118,21 +113,13 @@ router.route('/pokemons/:pokemon_id')
         }, function(err, pokeInstanz) {
             if (err)
                 res.send(err);
-
             res.json({ message: 'Pokemon erfolgreich gelöscht' });
         });
     });
 
 
-
-// more routes for our API will happen here
-
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/REST_API_Project', router);
-
-// START THE SERVER
-// =============================================================================
+// Server starten
+// ----------------------------------------------------------------------------
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log('Server erfolgreich auf ' + port + 'gestartet');
 

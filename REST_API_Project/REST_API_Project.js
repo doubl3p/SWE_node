@@ -1,27 +1,10 @@
 /*
-- schema
-- model
-- CRUD methods
-- testcommit
+CRUD Methoden mit allen relevanten Methoden
  */
 
-
-var mongoose = require('mongoose'); //Modul einbinden
-var db = mongoose.connection; // Connection aufbauen
-
-db.on('error', console.error);
-
-// Schema erstellen, Model daraus erstellen und via db.once
-// dieses DB bekannt machen
-db.once('open', function() {
-	  // Schema erstellen
-
-
+    var mongoose = require('mongoose');
+    var Pokemon = require('./pokemon');
     // Model aus Schema erstellen
-	var Pokemon = mongoose.model('Pokemon', pokemonSchema);
-
-    // Instanz erstellen und ich DB speichern
-    savePokemon("Kleinstein", 74, "Gestein");
 
     // Create Funktion zum speichern eines JSON-Datensatz in der DB
     function savePokemon(name, number, element){
@@ -112,10 +95,7 @@ db.once('open', function() {
         Pokemon.update({ element: oldElement }, { element: newElement });
     }
 
-});
 
-// Verbinden zur DB
-mongoose.connect('mongodb://localhost/test');
 
 
 
